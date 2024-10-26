@@ -15,7 +15,9 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.4",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.5",
     "gatsby": "^5.13.7",
     "gatsby-plugin-google-gtag": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
@@ -25,6 +27,8 @@
     "gatsby-plugin-sitemap": "^6.13.1",
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
+    "google-spreadsheet": "^3.3.0",
+    "googleapis": "^144.0.0",
     "postcss": "^8.4.47",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
