@@ -1,5 +1,6 @@
 import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import { Analytics } from "@vercel/analytics/react";
 
 const pageStyles = {
   color: "#232129",
