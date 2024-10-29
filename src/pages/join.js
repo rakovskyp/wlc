@@ -58,7 +58,8 @@ const buttonHoverStyle = {
 };
 
 const JoinPage = () => {
-  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [name, setName] = React.useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,7 +68,7 @@ const JoinPage = () => {
     fetch("/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ name, phone }),
     })
       .then(async (response) => {
         if (response.ok) {
@@ -89,16 +90,27 @@ const JoinPage = () => {
       <div style={containerStyle}>
         <h1 style={headingAccentStyles}>with love club</h1>
         <p style={paragraphStyles}>
-          enter your email below to join the with love club for $7 per month.
+          enter your name and phone number below to join the with love club for
+          $8 per month.
         </p>
         <form onSubmit={handleSubmit}>
           <input
-            type="email"
-            placeholder="enter your email"
+            type="text"
+            placeholder="your name"
             style={inputStyle}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
+          />
+          <input
+            type="tel"
+            placeholder="phone number"
+            style={inputStyle}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+            pattern="[0-9]*" // Allows only numeric input
+            inputMode="numeric" // Opens numeric keyboard on mobile
           />
           <br />
           <button style={buttonStyle} type="submit">

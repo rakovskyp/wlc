@@ -1,6 +1,5 @@
 import * as React from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Analytics } from "@vercel/analytics/react";
 
 const pageStyles = {
   color: "#232129",
@@ -8,13 +7,13 @@ const pageStyles = {
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
   fontWeight: 300,
   fontSize: 20,
+  transition: "opacity 1.5s ease", // Add transition for opacity
 };
 
-// A responsive container to center content on larger screens
 const containerStyle = {
   margin: "0 auto",
   maxWidth: "600px",
-  textAlign: "left", // Keep alignment left as in mobile view
+  textAlign: "left",
 };
 
 const iconStyle = {
@@ -147,8 +146,17 @@ const letterTextStyle = {
 };
 
 const IndexPage = () => {
+  const [opacity, setOpacity] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpacity(1); // Set opacity to 1 after 0ms to start the fade-in
+    }, 0);
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
+
   return (
-    <main style={pageStyles}>
+    <main style={{ ...pageStyles, opacity }}>
       <div style={containerStyle}>
         <p style={paragraphStyles}>
           <span style={headingAccentStyles}>with love club</span>
@@ -159,33 +167,33 @@ const IndexPage = () => {
             layout="fixed"
             style={{ display: "inline-block", ...iconStyle }}
           />
-          is an art project designed to foster vulnerability and connection.
+          is an art project designed to foster vulnerability and connection
+          through the stories of strangers.
         </p>
         <p style={paragraphStyles}>
-          each month, receive copies of handwritten letters from strangers
-          exploring their own journeys, guiding you through a unique emotional
-          theme and deepening your relationship with yourself.
+          receive handwritten letters from strangers that explore relationships,
+          feelings, betrayals, and revelations—offering insights that guide you
+          through complex emotions and deepen your understanding of yourself.
         </p>
         <p style={{ ...paragraphStyles, marginBottom: 12 }}>
-          active members each month will receive via snail mail:
+          each month active members will receive via snail mail:
         </p>
         <ol style={listStyles}>
           <li style={listItemStyles}>
             <span style={headingAccentStyles}>
               three copies of handwritten letters from strangers
             </span>
-            , all answering the same reflection prompt based on that month's
-            emotion theme.
+            , all sharing their heartfelt experiences.
           </li>
           <li style={listItemStyles}>
             <span style={headingAccentStyles}>
-              a reflection prompt and paper
+              a reflection prompt, paper, and a match
             </span>{" "}
-            for you to reflect & write your own response.
+            for you to reflect, write, & burn your own response.
           </li>
         </ol>
 
-        <p style={paragraphStyles}>subscribe for $7/month.</p>
+        <p style={paragraphStyles}>join for $8/month.</p>
 
         <div style={buttonWrapperStyle}>
           <a

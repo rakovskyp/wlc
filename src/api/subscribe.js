@@ -1,6 +1,6 @@
 // src/api/subscribe.js
 
-require("dotenv").config({ path: `.env.${process.env}` }); // Add this line at the very top
+require("dotenv").config({ path: `.env.${process.env}` }); // Load environment variables
 
 const { google } = require("googleapis");
 
@@ -10,16 +10,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { email } = req.body;
+  const { name, phone } = req.body;
 
-  // Validate email
-  if (!email || !validateEmail(email)) {
-    return res.status(400).json({ error: "Invalid email address" });
+  // Validate phone number and name
+  if (!name || !phone || !validatePhoneNumber(phone)) {
+    return res.status(400).json({ error: "Invalid name or phone number" });
   }
 
   try {
-    // Add email to Google Sheets
-    await addEmailToGoogleSheets(email);
+    // Add name and phone number to Google Sheets
+    await addSubscriberToGoogleSheets(name, phone);
 
     return res.status(200).json({ message: "success" });
   } catch (error) {
@@ -28,12 +28,13 @@ module.exports = async function handler(req, res) {
   }
 };
 
-function validateEmail(email) {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
+function validatePhoneNumber(phone) {
+  // A simple regex to allow only numeric values, typically 10-15 digits for a phone number
+  const re = /^[0-9]{10,15}$/;
+  return re.test(phone);
 }
 
-async function addEmailToGoogleSheets(email) {
+async function addSubscriberToGoogleSheets(name, phone) {
   // Authenticate with Google Sheets API
   const auth = new google.auth.JWT(
     process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -42,22 +43,22 @@ async function addEmailToGoogleSheets(email) {
     ["https://www.googleapis.com/auth/spreadsheets"]
   );
 
-  console.log("using serv acc ", process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
-
   const sheets = google.sheets({ version: "v4", auth });
 
   const timestamp = new Date().toISOString();
 
-  // Append the new row
+  // Append the new row with name, phone, and timestamp
   await sheets.spreadsheets.values.append({
     spreadsheetId: "1ukq9hKL2-29gWxn53ssdS4KTYGpCAOYXvkkzhNQjSYw", // Replace with your Spreadsheet ID
-    range: "Sheet1!A:B", // Adjust the sheet name and range as needed
+    range: "Sheet1!A:C", // Adjust the sheet name and range as needed
     valueInputOption: "USER_ENTERED",
     insertDataOption: "INSERT_ROWS",
     requestBody: {
-      values: [[email, timestamp]],
+      values: [[name, phone, timestamp]],
     },
   });
 
-  console.log(`Successfully added ${email} at ${timestamp}`);
+  console.log(
+    `Successfully added subscriber ${name} with phone number ${phone} at ${timestamp}`
+  );
 }
