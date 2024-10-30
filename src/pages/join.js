@@ -91,7 +91,7 @@ const JoinPage = () => {
         <h1 style={headingAccentStyles}>with love club</h1>
         <p style={paragraphStyles}>
           enter your name and phone number below to join the with love club for
-          $8 per month.
+          $9 per month.
         </p>
         <form onSubmit={handleSubmit}>
           <input
