@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import { LoadingPage } from "./index";
 
 const pageStyles = {
   color: "#232129",
@@ -36,7 +37,7 @@ const inputStyle = {
 };
 
 const buttonStyle = {
-  backgroundColor: "#FF867C", // Softer coral color
+  backgroundColor: "#FF867C",
   color: "#fff",
   padding: "14px 28px",
   fontSize: "1rem",
@@ -51,73 +52,81 @@ const buttonStyle = {
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
 };
 
-// Additional styling for :hover
-const buttonHoverStyle = {
-  transform: "scale(1.05)",
-  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
-};
-
 const JoinPage = () => {
-  const [phone, setPhone] = React.useState("");
-  const [name, setName] = React.useState("");
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start the loading screen
 
-    // Send POST request to serverless function
-    fetch("/api/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, phone }),
-    })
-      .then(async (response) => {
-        if (response.ok) {
-          // Redirect to capacity page on success
-          window.location.href = "/capacity";
-        } else {
-          const errorData = await response.json();
-          alert(`Error: ${errorData.error}`);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("There was an error. Please try again.");
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone }),
       });
+
+      if (response.ok) {
+        // Set the URL to redirect to
+        setRedirectUrl("https://buy.stripe.com/7sI9Ejh2t3OJ1a07su");
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.error}`);
+        setLoading(false); // Stop loading if there is an error
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("There was an error. Please try again.");
+      setLoading(false); // Stop loading on error
+    }
   };
+
+  useEffect(() => {
+    if (redirectUrl) {
+      window.location.href = redirectUrl;
+    }
+  }, [redirectUrl]);
 
   return (
     <main style={pageStyles}>
-      <div style={containerStyle}>
-        <h1 style={headingAccentStyles}>with love club</h1>
-        <p style={paragraphStyles}>
-          enter your name and phone number below to join the with love club for
-          $9 per month.
-        </p>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="your name"
-            style={inputStyle}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            type="tel"
-            placeholder="phone number"
-            style={inputStyle}
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-            pattern="[0-9]*" // Allows only numeric input
-            inputMode="numeric" // Opens numeric keyboard on mobile
-          />
-          <br />
-          <button style={buttonStyle} type="submit">
-            join with love club
-          </button>
-        </form>
-      </div>
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <div style={containerStyle}>
+          <h1 style={headingAccentStyles}>with love club</h1>
+          <p style={paragraphStyles}>
+            enter your name and phone number below to join the with love club
+            for $8 per month.
+          </p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="your name"
+              style={inputStyle}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <input
+              type="tel"
+              placeholder="phone number"
+              style={inputStyle}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+              pattern="[0-9]*"
+              inputMode="numeric"
+            />
+            <br />
+            <button style={buttonStyle} type="submit">
+              join with love club
+            </button>
+          </form>
+        </div>
+      )}
     </main>
   );
 };

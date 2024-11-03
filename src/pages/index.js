@@ -195,7 +195,7 @@ const IndexPage = () => {
             </li>
           </ol>
 
-          <p style={paragraphStyles}>join for $9/month.</p>
+          <p style={paragraphStyles}>join for $8/month.</p>
 
           <div style={buttonWrapperStyle}>
             <a
@@ -333,7 +333,7 @@ const IndexPage = () => {
   );
 };
 
-const LoadingPage = ({ children }) => {
+export const LoadingPage = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [percentage, setPercentage] = useState(0);
   const [showContent, setShowContent] = useState(false);
