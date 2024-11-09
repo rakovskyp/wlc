@@ -29,11 +29,10 @@ const ClosedPage = () => {
   return (
     <main style={pageStyles}>
       <div style={containerStyle}>
-        <h1 style={headingAccentStyles}>with love club</h1>
+        <h1 style={headingAccentStyles}>status: pending</h1>
         <p style={paragraphStyles}>
-          thank you for your interest in the with love club! we are currently at
-          capacity and closed for new members. we will reach out soon when
-          capacity opens up :)
+          thank you for your interest! we are currently at capacity and we will
+          reach out soon when capacity opens up :)
         </p>
       </div>
     </main>

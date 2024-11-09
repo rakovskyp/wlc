@@ -38,16 +38,16 @@ const inputStyle = {
 const buttonStyle = {
   backgroundColor: "#FF867C", // Softer coral color
   color: "#fff",
-  padding: "14px 28px",
-  fontSize: "1rem",
+  padding: "20px 40px", // Increase padding to make it bigger
+  fontSize: "1.2rem", // Increase font size for better readability
   fontWeight: "bold",
   border: "none",
-  borderRadius: "8px",
+  borderRadius: "12px", // Optional: increase the border-radius for a rounder button
   cursor: "pointer",
   display: "inline-block",
   textAlign: "center",
   textDecoration: "none",
-  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.1)", // Slightly increase shadow for emphasis
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
 };
 
@@ -81,18 +81,14 @@ const JoinPage = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("There was an error. Please try again.");
       });
   };
 
   return (
     <main style={pageStyles}>
       <div style={containerStyle}>
-        <h1 style={headingAccentStyles}>with love club</h1>
-        <p style={paragraphStyles}>
-          enter your name and phone number below to join the with love club for
-          $9 per month.
-        </p>
+        <h1 style={headingAccentStyles}>request access</h1>
+        <p style={paragraphStyles}>enter your name and phone number below</p>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -109,12 +105,18 @@ const JoinPage = () => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
-            pattern="[0-9]*" // Allows only numeric input
-            inputMode="numeric" // Opens numeric keyboard on mobile
+            inputMode="tel" // This will trigger a mobile phone keyboard with the '+' symbol
+            pattern="(\+?\d{1,4}[\s-]?)?(\(?\d{1,3}\)?[\s-]?)?[\d\s\-]{5,15}" // Optional: This allows for international formats
           />
           <br />
-          <button style={buttonStyle} type="submit">
-            join with love club
+          <br />
+          <button
+            style={buttonStyle}
+            type="submit"
+            onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
+            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+          >
+            sign up
           </button>
         </form>
       </div>

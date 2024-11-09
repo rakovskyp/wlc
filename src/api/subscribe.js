@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
   const { name, phone } = req.body;
 
   // Validate phone number and name
-  if (!name || !phone || !validatePhoneNumber(phone)) {
+  if (!name || !phone) {
     return res.status(400).json({ error: "Invalid name or phone number" });
   }
 
@@ -28,12 +28,6 @@ module.exports = async function handler(req, res) {
   }
 };
 
-function validatePhoneNumber(phone) {
-  // A simple regex to allow only numeric values, typically 10-15 digits for a phone number
-  const re = /^[0-9]{10,15}$/;
-  return re.test(phone);
-}
-
 async function addSubscriberToGoogleSheets(name, phone) {
   // Authenticate with Google Sheets API
   const auth = new google.auth.JWT(
@@ -44,8 +38,8 @@ async function addSubscriberToGoogleSheets(name, phone) {
   );
 
   const sheets = google.sheets({ version: "v4", auth });
-
   const timestamp = new Date().toISOString();
+  const formattedPhone = `'${phone}`;
 
   // Append the new row with name, phone, and timestamp
   await sheets.spreadsheets.values.append({
@@ -54,7 +48,7 @@ async function addSubscriberToGoogleSheets(name, phone) {
     valueInputOption: "USER_ENTERED",
     insertDataOption: "INSERT_ROWS",
     requestBody: {
-      values: [[name, phone, timestamp]],
+      values: [[name, formattedPhone, timestamp]],
     },
   });
 

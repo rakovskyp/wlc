@@ -32,8 +32,15 @@ const headingStyles = {
 const headingAccentStyles = {
   color: "#D35843",
 };
+
 const paragraphStyles = {
   marginBottom: 48,
+};
+
+const headerStyle = {
+  marginTop: 48,
+  marginBottom: 48,
+  fontSize: 30,
 };
 
 const buttonWrapperStyle = {
@@ -46,16 +53,16 @@ const buttonWrapperStyle = {
 const buttonStyle = {
   backgroundColor: "#FF867C", // Softer coral color
   color: "#fff",
-  padding: "14px 28px",
-  fontSize: "1rem",
+  padding: "20px 40px", // Increase padding to make it bigger
+  fontSize: "1.2rem", // Increase font size for better readability
   fontWeight: "bold",
   border: "none",
-  borderRadius: "8px",
+  borderRadius: "12px", // Optional: increase the border-radius for a rounder button
   cursor: "pointer",
   display: "inline-block",
   textAlign: "center",
   textDecoration: "none",
-  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.1)", // Slightly increase shadow for emphasis
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
 };
 
@@ -159,8 +166,9 @@ const IndexPage = () => {
     <LoadingPage>
       <main style={{ ...pageStyles }}>
         <div style={containerStyle}>
-          <p style={paragraphStyles}>
-            <span style={headingAccentStyles}>with love club</span>
+          <p style={headerStyle}>
+            an <span style={headingAccentStyles}>anonymous journaling app</span>{" "}
+            where you can share your thoughts and read others' reflections.
             <StaticImage
               src="../images/icon.png"
               alt="Love icon"
@@ -168,34 +176,7 @@ const IndexPage = () => {
               layout="fixed"
               style={{ display: "inline-block", ...iconStyle }}
             />
-            is an art project designed to foster vulnerability and connection
-            through the stories of strangers.
           </p>
-          <p style={paragraphStyles}>
-            receive handwritten letters from strangers that explore
-            relationships, feelings, betrayals, and revelations—offering
-            insights that guide you through complex emotions and deepen your
-            understanding of yourself.
-          </p>
-          <p style={{ ...paragraphStyles, marginBottom: 12 }}>
-            each month active members will receive via snail mail:
-          </p>
-          <ol style={listStyles}>
-            <li style={listItemStyles}>
-              <span style={headingAccentStyles}>
-                five copies of handwritten letters from strangers
-              </span>
-              , all sharing their heartfelt experiences.
-            </li>
-            <li style={listItemStyles}>
-              <span style={headingAccentStyles}>
-                a reflection prompt, paper, and a match
-              </span>{" "}
-              for you to reflect, write, & burn your own response.
-            </li>
-          </ol>
-
-          <p style={paragraphStyles}>join for $9/month.</p>
 
           <div style={buttonWrapperStyle}>
             <a
@@ -204,129 +185,45 @@ const IndexPage = () => {
               onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
               onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
             >
-              join with love club
+              request access
             </a>
           </div>
 
-          <p style={paragraphStyles}>past letters:</p>
+          <p style={paragraphStyles}>
+            designed to foster authentic connection, empathy, and personal
+            reflection in a supportive space by letting you:
+          </p>
+          <ol style={listStyles}>
+            <li style={listItemStyles}>
+              <span style={headingAccentStyles}>write anonymously:</span> create
+              journal entries on any topic, with optional prompts to spark
+              reflection. these entries are shared anonymously within the app’s
+              community.
+            </li>
+            <li style={listItemStyles}>
+              <span style={headingAccentStyles}>receive responses:</span> other
+              users respond to entries with advice, shared experiences, or words
+              of encouragement, creating a space where real connections can
+              form.
+            </li>
+            <li style={listItemStyles}>
+              <span style={headingAccentStyles}>read others' thoughts:</span>{" "}
+              scroll through letters from other people sharing their own
+              stories, question's and reflections.
+            </li>
+          </ol>
 
-          <div style={imageWrapperStyle}>
+          <p>
+            see into the lives of real people, offering perspective, empathy,
+            and a reminder that you’re not alone in what you’re feeling.
             <StaticImage
-              src="../images/PhysicalLetter1.jpg"
-              alt="Description of the image"
+              src="../images/icon.png"
+              alt="Love icon"
               placeholder="blurred"
-              layout="constrained"
-              width={600}
+              layout="fixed"
+              style={{ display: "inline-block", ...iconStyle }}
             />
-          </div>
-
-          <div style={letterContainerStyle}>
-            <div style={letterLineStyle}></div>
-            <div>
-              <p style={letterTextStyle}>Dear mon peche sucré,</p>
-              <p style={letterTextStyle}>
-                As I grow into myself, I allow myself to feel the intensity of
-                all emotions. To feel them deeply, and in the painful moments to
-                treat myself with love and compassion. With you, every moment
-                was so vibrant, filled with color, life, and energy. What is
-                life but a reflection of ourselves? In you, I found beauty and
-                was reminded of the things I appreciate – Tenderness. Joy.
-                Laughter. Investing 100% of myself into the people and things in
-                my life. The pain of rejection, although sharp and strong, is
-                another way for me to learn and grow into the truest form of
-                myself. Thank you for reminding me that love, true love, is what
-                makes the world go round. I hope to dedicate myself to love.
-              </p>
-              <p style={letterTextStyle}>
-                Lastly, to sever the cord, I forgive you. In my dreams, you
-                apologize. You say sorry for pursuing me, for taking my love
-                without being able to return it. You apologize for falsely
-                allowing me to hope, to dream. You apologize for building with
-                me, for showing affection, knowing fully well you can’t
-                reciprocate. I forgive you, and I thank you. My heart will
-                always overflow at the thought of you. Je pense tu es tres
-                mignon, et je t’aime. “Love is sufficient onto love.”
-              </p>
-              <p style={letterTextStyle}>From, Ellie</p>
-            </div>
-          </div>
-
-          <div style={imageWrapperStyle}>
-            <StaticImage
-              src="../images/PhysicalLetter2.png"
-              alt="Description of the image"
-              placeholder="blurred"
-              layout="constrained"
-              width={600}
-            />
-          </div>
-
-          <div style={letterContainerStyle}>
-            <div style={letterLineStyle}></div>
-            <div>
-              <p style={letterTextStyle}>
-                <s>Dear,</s> Hello my love,
-              </p>
-              <p style={letterTextStyle}>
-                I'm now realizing how long it's been since I've written you one
-                of these. Despite how many times I have the immense urge to roll
-                over in the morning, kiss you on the head, and say "I love you,"
-                we both know it's different to write it down.
-              </p>
-              <p style={letterTextStyle}>
-                My handwriting has changed over the years as I've grown older—a
-                swoop on the "y" and a curve on the "l" seem cool, artsy,
-                mature. I tried to replicate a friend I looked up to. You've
-                seen many different writing styles of mine through different
-                pages of wrapped stationery, different perfumes and lipstick
-                stains... but there was always one constant—my undeniable and
-                unwavering love for you.
-              </p>
-              <p style={letterTextStyle}>
-                I can't wait to love you through every season of our lives. I
-                can't wait to make you laugh every day, and watch the years form
-                around your eyes and know that I got to pass all my time with
-                you.
-              </p>
-              <p style={letterTextStyle}>
-                Alright, alright. I'll save it for our vows. Maggie's gonna make
-                fun of me now. Thank her when you see her for sitting on the
-                porch with me while I wrote this for you for the millionth time.
-              </p>
-              <p style={letterTextStyle}>Love you, Muffin.</p>
-              <p style={letterTextStyle}>
-                <s>From,</s> Love, Anonymous Park Lover
-              </p>
-            </div>
-          </div>
-
-          <div style={imageWrapperStyle}>
-            <StaticImage
-              src="../images/PhysicalLetter3.jpg"
-              alt="Description of the image"
-              placeholder="blurred"
-              layout="constrained"
-              width={600}
-            />
-          </div>
-
-          <div style={letterContainerStyle}>
-            <div style={letterLineStyle}></div>
-            <div>
-              <p style={letterTextStyle}>Dear Dad,</p>
-              <p style={letterTextStyle}>
-                I'll never forget the way you laugh, the way you guided, the way
-                you hugged, and the way you brought magic into every room. Life
-                is both less vibrant, and less interesting, without you here.
-                When you taught me to ice skate, you told me to step, step,
-                slide.
-              </p>
-              <p style={letterTextStyle}>
-                So I won't forget to keep doing that.
-              </p>
-              <p style={letterTextStyle}>Step, step, slide.</p>
-            </div>
-          </div>
+          </p>
         </div>
       </main>
     </LoadingPage>
