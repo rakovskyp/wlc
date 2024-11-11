@@ -72,7 +72,7 @@ const JoinPage = () => {
     })
       .then(async (response) => {
         if (response.ok) {
-          // Redirect to capacity page on success
+          localStorage.setItem('userData', JSON.stringify({ name, phone }));
           window.location.href = "/capacity";
         } else {
           const errorData = await response.json();
