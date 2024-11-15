@@ -15,7 +15,7 @@ const containerStyle = {
 };
 
 const headingAccentStyles = {
-  color: "#D35843",
+  color: "#4F92D5",
   fontSize: "1.5rem",
   marginBottom: "1rem",
 };
@@ -36,18 +36,18 @@ const inputStyle = {
 };
 
 const buttonStyle = {
-  backgroundColor: "#FF867C", // Softer coral color
+  backgroundColor: "#4F92D5",
   color: "#fff",
-  padding: "20px 40px", // Increase padding to make it bigger
-  fontSize: "1.2rem", // Increase font size for better readability
+  padding: "20px 40px",
+  fontSize: "1.2rem",
   fontWeight: "bold",
   border: "none",
-  borderRadius: "12px", // Optional: increase the border-radius for a rounder button
+  borderRadius: "12px",
   cursor: "pointer",
   display: "inline-block",
   textAlign: "center",
   textDecoration: "none",
-  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.1)", // Slightly increase shadow for emphasis
+  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.1)",
   transition: "transform 0.2s ease, box-shadow 0.2s ease",
 };
 
@@ -72,7 +72,7 @@ const JoinPage = () => {
     })
       .then(async (response) => {
         if (response.ok) {
-          localStorage.setItem('userData', JSON.stringify({ name, phone }));
+          localStorage.setItem("userData", JSON.stringify({ name, phone }));
           window.location.href = "/capacity";
         } else {
           const errorData = await response.json();
@@ -126,4 +126,4 @@ const JoinPage = () => {
 
 export default JoinPage;
 
-export const Head = () => <title>join with love club</title>;
+export const Head = () => <title>join soul</title>;

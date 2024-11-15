@@ -6,8 +6,8 @@ require("dotenv").config({ path: `.env` });
 
 module.exports = {
   siteMetadata: {
-    title: `with love club`,
-    siteUrl: `https://www.withloveclub.prestonr.xyz`,
+    title: `soul`,
+    siteUrl: `https://www.soul.prestonr.xyz`,
   },
   plugins: [
     "gatsby-plugin-postcss",

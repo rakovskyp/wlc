@@ -30,7 +30,7 @@ const headingStyles = {
   maxWidth: 320,
 };
 const headingAccentStyles = {
-  color: "#D35843",
+  color: "#4F92D5",
 };
 
 const paragraphStyles = {
@@ -51,7 +51,7 @@ const buttonWrapperStyle = {
 };
 
 const buttonStyle = {
-  backgroundColor: "#FF867C", // Softer coral color
+  backgroundColor: "#4F92D5", // Changed from #FF867C
   color: "#fff",
   padding: "20px 40px", // Increase padding to make it bigger
   fontSize: "1.2rem", // Increase font size for better readability
@@ -167,15 +167,9 @@ const IndexPage = () => {
       <main style={{ ...pageStyles }}>
         <div style={containerStyle}>
           <p style={headerStyle}>
-            an <span style={headingAccentStyles}>anonymous journaling app</span>{" "}
+            <strong>soul</strong> is an{" "}
+            <span style={headingAccentStyles}>anonymous journaling app</span>{" "}
             where you can share your thoughts and read others' reflections.
-            <StaticImage
-              src="../images/icon.png"
-              alt="Love icon"
-              placeholder="blurred"
-              layout="fixed"
-              style={{ display: "inline-block", ...iconStyle }}
-            />
           </p>
 
           <div style={buttonWrapperStyle}>
@@ -216,13 +210,6 @@ const IndexPage = () => {
           <p>
             see into the lives of real people, offering perspective, empathy,
             and a reminder that you’re not alone in what you’re feeling.
-            <StaticImage
-              src="../images/icon.png"
-              alt="Love icon"
-              placeholder="blurred"
-              layout="fixed"
-              style={{ display: "inline-block", ...iconStyle }}
-            />
           </p>
         </div>
       </main>
@@ -280,19 +267,19 @@ const LoadingPage = ({ children }) => {
             <path
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
               fill="none"
-              stroke="#D35843"
+              stroke="#4F92D5"
               strokeWidth="2"
             />
             {/* Filling heart with clip path */}
             <path
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-              fill="#D35843"
+              fill="#4F92D5"
               style={{
                 clipPath: `inset(${100 - percentage}% 0 0 0)`,
               }}
             />
           </svg>
-          <span className="text-[#D35843] text-4xl font-bold">
+          <span className="text-[#4F92D5] text-4xl font-bold">
             {percentage}%
           </span>
         </div>
@@ -312,4 +299,4 @@ const LoadingPage = ({ children }) => {
 
 export default IndexPage;
 
-export const Head = () => <title>with love club</title>;
+export const Head = () => <title>soul</title>;

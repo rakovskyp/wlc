@@ -15,7 +15,7 @@ const containerStyle = {
 };
 
 const headingAccentStyles = {
-  color: "#D35843",
+  color: "#4F92D5",
   fontSize: "1.5rem",
   marginBottom: "1rem",
 };
