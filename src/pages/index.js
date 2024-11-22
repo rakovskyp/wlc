@@ -32,7 +32,8 @@ const pageStyles = {
   alignItems: "center",
   justifyContent: "center",
   position: "relative",
-  fontFamily: "'Neue Montreal', sans-serif"
+  fontFamily: "'Neue Montreal', sans-serif",
+  overflow: "hidden" // Prevent scrolling
 };
 
 const containerStyle = {
@@ -125,17 +126,23 @@ const desktopBackgroundStyle = {
   zIndex: -1,
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-  gap: "4px"
+  gap: "4px",
+  overflow: "hidden" // Prevent scrolling
 };
 
 const BackgroundImages = ({ isLoaded }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [startTime, setStartTime] = useState(null);
+  const [gridSize, setGridSize] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 1024);
+      // Calculate number of grid cells needed
+      const columns = Math.ceil(window.innerWidth / 200);
+      const rows = Math.ceil(window.innerHeight / 200);
+      setGridSize(columns * rows);
     };
     
     checkMobile();
@@ -189,11 +196,11 @@ const BackgroundImages = ({ isLoaded }) => {
 
   return (
     <div style={desktopBackgroundStyle}>
-      {images.map((image, index) => (
+      {[...Array(gridSize)].map((_, index) => (
         <img
           key={index}
-          src={image}
-          alt={`Background ${index + 1}`}
+          src={images[index % images.length]}
+          alt={`Background ${(index % images.length) + 1}`}
           style={{
             width: "100%",
             height: "100%",
@@ -253,6 +260,16 @@ const LoadingPage = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [percentage, setPercentage] = useState(0);
   const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    // Prevent scrolling on desktop
+    if (window.innerWidth > 1024) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }
+  }, []);
 
   useEffect(() => {
     // Preload images
