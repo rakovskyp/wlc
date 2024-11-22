@@ -1,218 +1,252 @@
 import React, { useState, useEffect } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
+const images = [
+  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg",
+  "https://i.pinimg.com/736x/cc/77/44/cc774492deed5540a5f47fa70f77f575.jpg",
+  "https://i.pinimg.com/474x/4a/1f/a6/4a1fa65e455ef2e642af3de0c51def37.jpg",
+  "https://i.pinimg.com/474x/e7/c5/46/e7c5467b7124590669b4fb4bf353e1aa.jpg",
+  "https://i.pinimg.com/474x/f8/a7/1c/f8a71ce3585b8ca6100e6af346eb0c57.jpg",
+  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg",
+  "https://i.pinimg.com/474x/d7/1b/b0/d71bb0463c6a646bb414d45d8df125b6.jpg",
+  "https://i.pinimg.com/474x/a2/ff/32/a2ff3245a356ac6737a7fa34327270c3.jpg",
+  "https://i.pinimg.com/enabled_lo_mid/474x/b1/6b/d0/b16bd071326ec5026bf59fcd6b1c95e8.jpg",
+  "https://i.pinimg.com/enabled_lo_mid/474x/58/c5/a0/58c5a0936f46ab7d4d813054328aa108.jpg",
+  "https://i.pinimg.com/enabled_lo_mid/474x/85/69/ad/8569ad8a38fe6a8dc92d30de4250f516.jpg",
+  "https://i.pinimg.com/474x/d6/1d/7e/d61d7e7c9af16ea2f4aeea2b33c2757e.jpg",
+  "https://i.pinimg.com/474x/49/75/48/497548dd526b59f5a1da1b6c55d3733d.jpg",
+  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg",
+  "https://i.pinimg.com/474x/20/3b/af/203baf28766105e57a920704c9b8f5f9.jpg",
+  "https://i.pinimg.com/enabled_lo_mid/474x/b3/69/08/b3690892d4de6d41985fea4b337cc329.jpg",
+  "https://i.pinimg.com/enabled_lo_mid/474x/17/8b/dd/178bdd79f6d05c4abed92045d074cc90.jpg",
+  "https://i.pinimg.com/474x/bd/7c/e0/bd7ce0417319efc91a62417b428c9514.jpg",
+  "https://i.pinimg.com/474x/50/af/43/50af43135c0a37a657c6061c4f2c5a1d.jpg",
+  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg"
+];
+
 const pageStyles = {
-  color: "#232129",
+  color: "#fff",
   padding: 50,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
   fontWeight: 300,
   fontSize: 20,
-  transition: "opacity 1.5s ease", // Add transition for opacity
+  transition: "opacity 1.5s ease, filter 2s ease",
+  textAlign: "center", 
+  minHeight: "100vh",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+  fontFamily: "'Poppins', sans-serif"
 };
 
 const containerStyle = {
   margin: "0 auto",
   maxWidth: "600px",
-  textAlign: "left",
-};
-
-const iconStyle = {
-  width: "1.5em",
-  height: "1.5em",
-  marginLeft: "0em",
-  marginBottom: "0.2em",
-  verticalAlign: "middle",
-};
-
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
-const headingAccentStyles = {
-  color: "#4F92D5",
-};
-
-const paragraphStyles = {
-  marginBottom: 48,
-};
-
-const headerStyle = {
-  marginTop: 48,
-  marginBottom: 48,
-  fontSize: 30,
-};
-
-const buttonWrapperStyle = {
   display: "flex",
-  justifyContent: "center",
+  flexDirection: "column", 
   alignItems: "center",
-  marginBottom: 48,
+  padding: "40px"
+};
+
+const titleStyle = {
+  fontSize: "48px",
+  fontWeight: "600",
+  marginBottom: "8px",
+  fontFamily: "'Playfair Display', serif",
+  letterSpacing: "0.05em"
+};
+
+const subtitleStyle = {
+  fontSize: "24px",
+  color: "#eee",
+  marginBottom: "48px",
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: "300",
+  letterSpacing: "0.03em",
+  whiteSpace: "nowrap"
+};
+
+const featureListStyle = {
+  listStyle: "none",
+  padding: 0,
+  marginBottom: "48px",
+  textAlign: "left"
+};
+
+const featureItemStyle = {
+  fontSize: "20px",
+  marginBottom: "16px",
+  display: "flex",
+  alignItems: "center",
+  fontFamily: "'Poppins', sans-serif",
+  fontWeight: "300",
+  letterSpacing: "0.02em"
+};
+
+const bulletPointStyle = {
+  color: "transparent",
+  marginRight: "12px",
+  fontSize: "24px",
+  fontFamily: "'Playfair Display', serif"
 };
 
 const buttonStyle = {
-  backgroundColor: "#4F92D5", // Changed from #FF867C
+  background: "linear-gradient(45deg, #4F92D5, #6BA5E7)",
   color: "#fff",
-  padding: "20px 40px", // Increase padding to make it bigger
-  fontSize: "1.2rem", // Increase font size for better readability
-  fontWeight: "bold",
-  border: "none",
-  borderRadius: "12px", // Optional: increase the border-radius for a rounder button
+  padding: "16px 36px",
+  fontSize: "1.25rem",
+  fontWeight: "600",
+  borderRadius: "40px",
   cursor: "pointer",
   display: "inline-block",
   textAlign: "center",
   textDecoration: "none",
-  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.1)", // Slightly increase shadow for emphasis
-  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+  transition: "all 0.3s ease",
+  fontFamily: "'Poppins', sans-serif",
+  letterSpacing: "0.1em",
+  animation: "pulse 2s infinite"
 };
 
-const buttonHoverStyle = {
-  transform: "scale(1.05)",
-  boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
+const mobileBackgroundStyle = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  zIndex: -1,
+  objectFit: "cover",
+  transition: "opacity 0.5s ease-in-out"
 };
 
-const listStyles = {
-  paddingLeft: 50, // Adjust padding to indent the list
-  listStyleType: "decimal", // Sets numbered list style
+const desktopBackgroundStyle = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  zIndex: -1,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+  gap: "4px"
 };
 
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 20,
-  maxWidth: 560,
-  marginBottom: 30,
-  paddingLeft: 10, // Add padding to indent the text from the number
-};
+const BackgroundImages = ({ isLoaded }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [startTime, setStartTime] = useState(null);
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-};
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-};
+  useEffect(() => {
+    if (isMobile && isLoaded) {
+      setStartTime(Date.now());
+      let intervalId;
 
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-};
+      const updateImage = () => {
+        const elapsed = Date.now() - startTime;
+        const seconds = Math.floor(elapsed / 1000);
+        
+        let interval;
+        if (seconds < 1) interval = 50;
+        else if (seconds < 2) interval = 100;
+        else if (seconds < 3) interval = 200;
+        else if (seconds < 4) interval = 500;
+        else if (seconds < 6) interval = 1500;
+        else interval = 1750;
 
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-};
+        setCurrentImageIndex(prev => (prev + 1) % images.length);
+        intervalId = setTimeout(updateImage, interval);
+      };
 
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-};
+      intervalId = setTimeout(updateImage, 50);
+      
+      return () => clearTimeout(intervalId);
+    }
+  }, [isMobile, startTime, isLoaded]);
 
-const imageWrapperStyle = {
-  marginBottom: 24, // Adjust this value to control spacing
-};
+  if (isMobile) {
+    return (
+      <div style={mobileBackgroundStyle}>
+        <img 
+          src={images[currentImageIndex]}
+          alt="Background"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover"
+          }}
+        />
+      </div>
+    );
+  }
 
-const letterContainerStyle = {
-  display: "flex",
-  alignItems: "flex-start",
-  marginTop: 48,
-  marginBottom: 48,
-};
-
-const letterLineStyle = {
-  width: 4,
-  backgroundColor: "#D35843",
-  marginRight: 16,
-};
-
-const letterTextStyle = {
-  fontStyle: "italic",
-  fontSize: "1rem",
-  lineHeight: 1.6,
-  color: "#232129",
-  marginBottom: 16, // Adding margin to separate paragraphs
+  return (
+    <div style={desktopBackgroundStyle}>
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`Background ${index + 1}`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover"
+          }}
+        />
+      ))}
+    </div>
+  );
 };
 
 const IndexPage = () => {
-  // const [opacity, setOpacity] = React.useState(0);
-
-  // React.useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setOpacity(1); // Set opacity to 1 after 0ms to start the fade-in
-  //   }, 0);
-  //   return () => clearTimeout(timer); // Cleanup timer on unmount
-  // }, []);
-
   return (
     <LoadingPage>
-      <main style={{ ...pageStyles }}>
-        <div style={containerStyle}>
-          <p style={headerStyle}>
-            <strong>soul</strong> is an{" "}
-            <span style={headingAccentStyles}>anonymous journaling app</span>{" "}
-            where you can share your thoughts and read others' reflections.
-          </p>
+      {({ isLoaded }) => (
+        <main style={{
+          ...pageStyles,
+          opacity: isLoaded ? 1 : 0,
+          filter: isLoaded ? 'blur(0px)' : 'blur(10px)'
+        }}>
+          <BackgroundImages isLoaded={isLoaded} />
+          <div style={containerStyle}>
+            <h1 style={titleStyle}>SOUL</h1>
+            <h2 style={subtitleStyle}>an anonymous journaling app</h2>
+            
+            <ul style={featureListStyle}>
+              <li style={featureItemStyle}>
+                <span style={bulletPointStyle}>•</span>
+                write your thoughts.
+              </li>
+              <li style={featureItemStyle}>
+                <span style={bulletPointStyle}>•</span>
+                share your reflections.
+              </li>
+              <li style={featureItemStyle}>
+                <span style={bulletPointStyle}>•</span>
+                read others' stories.
+              </li>
+            </ul>
 
-          <div style={buttonWrapperStyle}>
             <a
               href="/join"
               style={buttonStyle}
               onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
               onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
             >
-              request access
+              get access
             </a>
           </div>
-
-          <p style={paragraphStyles}>
-            designed to foster authentic connection, empathy, and personal
-            reflection in a supportive space by letting you:
-          </p>
-          <ol style={listStyles}>
-            <li style={listItemStyles}>
-              <span style={headingAccentStyles}>write anonymously:</span> create
-              journal entries on any topic, with optional prompts to spark
-              reflection. these entries are shared anonymously within the app’s
-              community.
-            </li>
-            <li style={listItemStyles}>
-              <span style={headingAccentStyles}>receive responses:</span> other
-              users respond to entries with advice, shared experiences, or words
-              of encouragement, creating a space where real connections can
-              form.
-            </li>
-            <li style={listItemStyles}>
-              <span style={headingAccentStyles}>read others' thoughts:</span>{" "}
-              scroll through letters from other people sharing their own
-              stories, question's and reflections.
-            </li>
-          </ol>
-
-          <p>
-            see into the lives of real people, offering perspective, empathy,
-            and a reminder that you’re not alone in what you’re feeling.
-          </p>
-        </div>
-      </main>
+        </main>
+      )}
     </LoadingPage>
   );
 };
@@ -223,27 +257,36 @@ const LoadingPage = ({ children }) => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // Handle percentage counter
-    const percentageInterval = setInterval(() => {
-      setPercentage((prev) => {
-        if (prev >= 100) {
-          clearInterval(percentageInterval);
-          setLoading(false);
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 15); // 1500ms / 100 = 15ms per increment
-
-    return () => clearInterval(percentageInterval);
+    // Preload images
+    Promise.all(
+      images.map(src => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      })
+    ).then(() => {
+      // Start percentage counter after images are loaded
+      const percentageInterval = setInterval(() => {
+        setPercentage((prev) => {
+          if (prev >= 100) {
+            clearInterval(percentageInterval);
+            setLoading(false);
+            return 100;
+          }
+          return prev + 1;
+        });
+      }, 15);
+    });
   }, []);
 
   useEffect(() => {
-    // Handle content fade-in after loading completes
     if (!loading) {
       const timeout = setTimeout(() => {
         setShowContent(true);
-      }, 50);
+      }, 100); 
       return () => clearTimeout(timeout);
     }
   }, [loading]);
@@ -291,7 +334,7 @@ const LoadingPage = ({ children }) => {
           showContent ? "opacity-100" : "opacity-0"
         }`}
       >
-        {children}
+        {typeof children === 'function' ? children({ isLoaded: showContent }) : children}
       </div>
     </>
   );
