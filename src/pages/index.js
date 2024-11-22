@@ -2,26 +2,22 @@ import React, { useState, useEffect } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
 const images = [
-  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg",
-  "https://i.pinimg.com/736x/cc/77/44/cc774492deed5540a5f47fa70f77f575.jpg",
-  "https://i.pinimg.com/474x/4a/1f/a6/4a1fa65e455ef2e642af3de0c51def37.jpg",
-  "https://i.pinimg.com/474x/e7/c5/46/e7c5467b7124590669b4fb4bf353e1aa.jpg",
-  "https://i.pinimg.com/474x/f8/a7/1c/f8a71ce3585b8ca6100e6af346eb0c57.jpg",
-  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg",
-  "https://i.pinimg.com/474x/d7/1b/b0/d71bb0463c6a646bb414d45d8df125b6.jpg",
-  "https://i.pinimg.com/474x/a2/ff/32/a2ff3245a356ac6737a7fa34327270c3.jpg",
-  "https://i.pinimg.com/enabled_lo_mid/474x/b1/6b/d0/b16bd071326ec5026bf59fcd6b1c95e8.jpg",
-  "https://i.pinimg.com/enabled_lo_mid/474x/58/c5/a0/58c5a0936f46ab7d4d813054328aa108.jpg",
-  "https://i.pinimg.com/enabled_lo_mid/474x/85/69/ad/8569ad8a38fe6a8dc92d30de4250f516.jpg",
-  "https://i.pinimg.com/474x/d6/1d/7e/d61d7e7c9af16ea2f4aeea2b33c2757e.jpg",
-  "https://i.pinimg.com/474x/49/75/48/497548dd526b59f5a1da1b6c55d3733d.jpg",
-  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg",
-  "https://i.pinimg.com/474x/20/3b/af/203baf28766105e57a920704c9b8f5f9.jpg",
-  "https://i.pinimg.com/enabled_lo_mid/474x/b3/69/08/b3690892d4de6d41985fea4b337cc329.jpg",
-  "https://i.pinimg.com/enabled_lo_mid/474x/17/8b/dd/178bdd79f6d05c4abed92045d074cc90.jpg",
-  "https://i.pinimg.com/474x/bd/7c/e0/bd7ce0417319efc91a62417b428c9514.jpg",
-  "https://i.pinimg.com/474x/50/af/43/50af43135c0a37a657c6061c4f2c5a1d.jpg",
-  "https://i.pinimg.com/736x/51/80/48/518048194929c8adeef9e38581202f02.jpg"
+"https://i.pinimg.com/enabled_lo_mid/736x/8e/45/d4/8e45d4cac760b570511889e2dfa789d3.jpg",
+"https://i.pinimg.com/736x/2b/6f/82/2b6f82e56dea23235b6e1a77e68a5039.jpg",
+"https://i.pinimg.com/736x/23/ae/f2/23aef28abc2f0919f22c6ecb3f772a69.jpg",
+"https://i.pinimg.com/736x/0e/37/f0/0e37f056a752371301df34383ae085b8.jpg",
+"https://i.pinimg.com/enabled_lo_mid/736x/ed/2f/04/ed2f04ef9d75978e40b1a122670bc7ba.jpg",
+"https://i.pinimg.com/enabled_lo_mid/736x/df/a1/35/dfa135eabacbf113a86090ae6a611bfc.jpg",
+"https://i.pinimg.com/736x/3d/df/fd/3ddffd55f9c911f3eabfa18c29ca81d7.jpg",
+"https://i.pinimg.com/enabled_lo_mid/736x/08/6f/7b/086f7b80bbe2791937f737efe28ab139.jpg",
+"https://i.pinimg.com/736x/a9/92/c4/a992c424822856a8c403215bf44ff8fa.jpg",
+"https://i.pinimg.com/736x/64/14/b8/6414b8136fa6f7aabb6e8bd7ba98e230.jpg",
+"https://i.pinimg.com/736x/a3/a0/c7/a3a0c7bb529a0cff3a2e27a52a0860b1.jpg",
+"https://i.pinimg.com/enabled_lo_mid/736x/ce/ae/90/ceae9015b7936b54d93b8e87dc5e22eb.jpg",
+"https://i.pinimg.com/736x/95/52/aa/9552aa21a168c30726f40453b4a61e75.jpg",
+"https://i.pinimg.com/736x/14/5b/b4/145bb44f3b04338fd851cffccfdf758f.jpg",
+"https://i.pinimg.com/736x/2b/70/78/2b7078b5381073c51051a0a444132ddf.jpg",
+"https://i.pinimg.com/736x/3d/a0/38/3da038fa6d5f07b6fc4d5415f4c79211.jpg"
 ];
 
 const pageStyles = {
@@ -36,7 +32,7 @@ const pageStyles = {
   alignItems: "center",
   justifyContent: "center",
   position: "relative",
-  fontFamily: "'Poppins', sans-serif"
+  fontFamily: "'Neue Montreal', sans-serif"
 };
 
 const containerStyle = {
@@ -52,15 +48,16 @@ const titleStyle = {
   fontSize: "48px",
   fontWeight: "600",
   marginBottom: "8px",
-  fontFamily: "'Playfair Display', serif",
-  letterSpacing: "0.05em"
+  fontFamily: "'Times New Roman Condensed', 'Times New Roman', serif",
+  letterSpacing: "0.05em",
+  color: "#fff"
 };
 
 const subtitleStyle = {
   fontSize: "24px",
-  color: "#eee",
+  color: "#fff",
   marginBottom: "48px",
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: "'Neue Montreal', sans-serif",
   fontWeight: "300",
   letterSpacing: "0.03em",
   whiteSpace: "nowrap"
@@ -78,16 +75,17 @@ const featureItemStyle = {
   marginBottom: "16px",
   display: "flex",
   alignItems: "center",
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: "'Neue Montreal', sans-serif",
   fontWeight: "300",
-  letterSpacing: "0.02em"
+  letterSpacing: "0.02em",
+  color: "#fff"
 };
 
 const bulletPointStyle = {
   color: "transparent",
   marginRight: "12px",
   fontSize: "24px",
-  fontFamily: "'Playfair Display', serif"
+  fontFamily: "'Times New Roman Condensed', 'Times New Roman', serif"
 };
 
 const buttonStyle = {
@@ -95,14 +93,14 @@ const buttonStyle = {
   color: "#fff",
   padding: "16px 36px",
   fontSize: "1.25rem",
-  fontWeight: "600",
+  fontWeight: "500",
   borderRadius: "40px",
   cursor: "pointer",
   display: "inline-block",
   textAlign: "center",
   textDecoration: "none",
   transition: "all 0.3s ease",
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: "'Neue Montreal', sans-serif",
   letterSpacing: "0.1em",
   animation: "pulse 2s infinite"
 };
