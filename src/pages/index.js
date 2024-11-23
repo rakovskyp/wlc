@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
 const images = [
+"https://i.pinimg.com/enabled_lo_mid/736x/df/a1/35/dfa135eabacbf113a86090ae6a611bfc.jpg",
 "https://i.pinimg.com/enabled_lo_mid/736x/8e/45/d4/8e45d4cac760b570511889e2dfa789d3.jpg",
 "https://i.pinimg.com/736x/2b/6f/82/2b6f82e56dea23235b6e1a77e68a5039.jpg",
 "https://i.pinimg.com/736x/23/ae/f2/23aef28abc2f0919f22c6ecb3f772a69.jpg",
 "https://i.pinimg.com/736x/0e/37/f0/0e37f056a752371301df34383ae085b8.jpg",
 "https://i.pinimg.com/enabled_lo_mid/736x/ed/2f/04/ed2f04ef9d75978e40b1a122670bc7ba.jpg",
-"https://i.pinimg.com/enabled_lo_mid/736x/df/a1/35/dfa135eabacbf113a86090ae6a611bfc.jpg",
 "https://i.pinimg.com/736x/3d/df/fd/3ddffd55f9c911f3eabfa18c29ca81d7.jpg",
 "https://i.pinimg.com/enabled_lo_mid/736x/08/6f/7b/086f7b80bbe2791937f737efe28ab139.jpg",
 "https://i.pinimg.com/736x/a9/92/c4/a992c424822856a8c403215bf44ff8fa.jpg",
@@ -168,7 +168,14 @@ const BackgroundImages = ({ isLoaded }) => {
         else if (seconds < 6) interval = 1500;
         else interval = 1750;
 
-        setCurrentImageIndex(prev => (prev + 1) % images.length);
+        setCurrentImageIndex(prev => {
+          // Trigger haptic feedback when image changes
+          if (window.navigator && window.navigator.vibrate) {
+            window.navigator.vibrate(10); // Light tap vibration
+          }
+          return (prev + 1) % images.length;
+        });
+        
         intervalId = setTimeout(updateImage, interval);
       };
 
