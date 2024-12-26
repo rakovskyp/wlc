@@ -258,4 +258,4 @@ const buttonStyle = {
 
 export default ClosedPage;
 
-export const Head = () => <title>soul - currently at capacity</title>;
+export const Head = () => <title>aura - currently at capacity</title>;

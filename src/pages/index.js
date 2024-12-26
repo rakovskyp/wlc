@@ -255,4 +255,4 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <title>soul</title>;
+export const Head = () => <title>aura</title>;
