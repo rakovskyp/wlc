@@ -49,8 +49,8 @@ const titleStyle = {
   fontSize: "48px",
   fontWeight: "600",
   marginBottom: "8px",
-  fontFamily: "'Times New Roman Condensed', 'Times New Roman', serif",
-  letterSpacing: "0.05em",
+  fontFamily: "'Playfair Display', serif",
+  letterSpacing: "0.03em",
   color: "#fff",
 };
 
@@ -222,7 +222,7 @@ const IndexPage = () => {
     <main style={pageStyles}>
       <BackgroundImages />
       <div style={containerStyle}>
-        <h1 style={titleStyle}>aura</h1>
+        <h1 style={titleStyle}>nuance</h1>
         <h2 style={subtitleStyle}>an anonymous journaling app</h2>
 
         <ul style={featureListStyle}>
@@ -255,4 +255,4 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <title>aura</title>;
+export const Head = () => <title>nuance</title>;
