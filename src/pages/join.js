@@ -193,4 +193,4 @@ const JoinPage = () => {
 
 export default JoinPage;
 
-export const Head = () => <title>join nuance</title>;
+export const Head = () => <title>join soul</title>;

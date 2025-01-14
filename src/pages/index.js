@@ -222,7 +222,7 @@ const IndexPage = () => {
     <main style={pageStyles}>
       <BackgroundImages />
       <div style={containerStyle}>
-        <h1 style={titleStyle}>nuance</h1>
+        <h1 style={titleStyle}>soul</h1>
         <h2 style={subtitleStyle}>an anonymous journaling app</h2>
 
         <ul style={featureListStyle}>
