@@ -85,7 +85,7 @@ const SupportPage = () => {
             Need additional help? Our support team is here for you. Send us an email and we'll get back to you.
           </p>
           <a
-            href="mailto:support@soul.com"
+            href="mailto:hello@getsoulapp.com"
             style={contactButtonStyle}
             onMouseEnter={(e) => {
               e.target.style.transform = "scale(1.05)";

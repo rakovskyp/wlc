@@ -108,21 +108,18 @@ const buttonStyle = {
 
 const supportButtonStyle = {
   position: "fixed",
-  bottom: "30px",
-  right: "30px",
-  background: "rgba(79, 146, 213, 0.9)",
-  color: "#fff",
-  padding: "12px 24px",
-  fontSize: "1rem",
-  fontWeight: "500",
-  borderRadius: "24px",
+  bottom: "20px",
+  right: "20px",
+  padding: "8px 16px",
+  fontSize: "0.9rem",
+  fontWeight: "400",
+  borderRadius: "16px",
   cursor: "pointer",
   display: "inline-block",
   textAlign: "center",
   textDecoration: "none",
   transition: "all 0.3s ease",
   fontFamily: "'Neue Montreal', sans-serif",
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   zIndex: 1000,
 };
 
@@ -238,6 +235,31 @@ const BackgroundImages = () => {
 };
 
 const IndexPage = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const dynamicSupportButtonStyle = {
+    ...supportButtonStyle,
+    ...(isMobile ? {
+      background: "rgba(255, 255, 255, 0.1)",
+      color: "rgba(255, 255, 255, 0.8)",
+      border: "1px solid rgba(255, 255, 255, 0.2)",
+      backdropFilter: "blur(10px)",
+    } : {
+      background: "linear-gradient(45deg, #4F92D5, #6BA5E7)",
+      color: "#fff",
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+    })
+  };
+
   return (
     <main style={pageStyles}>
       <BackgroundImages />
@@ -272,14 +294,26 @@ const IndexPage = () => {
       
       <a
         href="/support"
-        style={supportButtonStyle}
+        style={dynamicSupportButtonStyle}
         onMouseEnter={(e) => {
           e.target.style.transform = "scale(1.05)";
-          e.target.style.boxShadow = "0 6px 16px rgba(0, 0, 0, 0.2)";
+          if (isMobile) {
+            e.target.style.background = "rgba(255, 255, 255, 0.15)";
+            e.target.style.border = "1px solid rgba(255, 255, 255, 0.3)";
+          } else {
+            e.target.style.background = "linear-gradient(45deg, #5da0e3, #7ab3f5)";
+            e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
+          }
         }}
         onMouseLeave={(e) => {
           e.target.style.transform = "scale(1)";
-          e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
+          if (isMobile) {
+            e.target.style.background = "rgba(255, 255, 255, 0.1)";
+            e.target.style.border = "1px solid rgba(255, 255, 255, 0.2)";
+          } else {
+            e.target.style.background = "linear-gradient(45deg, #4F92D5, #6BA5E7)";
+            e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
+          }
         }}
       >
         Need Help?
@@ -290,4 +324,4 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <title>nuance</title>;
+export const Head = () => <title>soul</title>;
