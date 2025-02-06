@@ -106,6 +106,26 @@ const buttonStyle = {
   animation: "pulse 2s infinite",
 };
 
+const supportButtonStyle = {
+  position: "fixed",
+  bottom: "30px",
+  right: "30px",
+  background: "rgba(79, 146, 213, 0.9)",
+  color: "#fff",
+  padding: "12px 24px",
+  fontSize: "1rem",
+  fontWeight: "500",
+  borderRadius: "24px",
+  cursor: "pointer",
+  display: "inline-block",
+  textAlign: "center",
+  textDecoration: "none",
+  transition: "all 0.3s ease",
+  fontFamily: "'Neue Montreal', sans-serif",
+  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+  zIndex: 1000,
+};
+
 const mobileBackgroundStyle = {
   position: "fixed",
   top: 0,
@@ -249,6 +269,21 @@ const IndexPage = () => {
           get access
         </a>
       </div>
+      
+      <a
+        href="/support"
+        style={supportButtonStyle}
+        onMouseEnter={(e) => {
+          e.target.style.transform = "scale(1.05)";
+          e.target.style.boxShadow = "0 6px 16px rgba(0, 0, 0, 0.2)";
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = "scale(1)";
+          e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
+        }}
+      >
+        Need Help?
+      </a>
     </main>
   );
 };
