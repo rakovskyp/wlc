@@ -10,3 +10,15 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
   });
 };
+
+// Add redirect for iOS app store link
+exports.createPages = ({ actions }) => {
+  const { createRedirect } = actions;
+
+  createRedirect({
+    fromPath: `/ios`,
+    toPath: `https://apps.apple.com/us/app/soul-feel-heal-connect/id6741874801`,
+    isPermanent: true,
+    force: true,
+  });
+};
