@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Floating support button in bottom right corner of homepage
 - New terms of service page at `/terms` with comprehensive legal information
 - New privacy policy page at `/privacy` with detailed data handling information
+- Added `/ios` redirect to the Apple App Store link for Soul app (implemented with both server-side and client-side redirects)
+- Added `gatsby-plugin-meta-redirect` for improved handling of external redirects
 
 ### Changed
 - Expanded FAQ section with comprehensive information about app features and community guidelines
