@@ -283,7 +283,7 @@ const IndexPage = () => {
         </ul>
 
         <a
-          href="/join"
+          href="/ios"
           style={buttonStyle}
           onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
           onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
