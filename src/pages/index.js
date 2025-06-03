@@ -248,16 +248,18 @@ const IndexPage = () => {
 
   const dynamicSupportButtonStyle = {
     ...supportButtonStyle,
-    ...(isMobile ? {
-      background: "rgba(255, 255, 255, 0.1)",
-      color: "rgba(255, 255, 255, 0.8)",
-      border: "1px solid rgba(255, 255, 255, 0.2)",
-      backdropFilter: "blur(10px)",
-    } : {
-      background: "linear-gradient(45deg, #4F92D5, #6BA5E7)",
-      color: "#fff",
-      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-    })
+    ...(isMobile
+      ? {
+          background: "rgba(255, 255, 255, 0.1)",
+          color: "rgba(255, 255, 255, 0.8)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          backdropFilter: "blur(10px)",
+        }
+      : {
+          background: "linear-gradient(45deg, #4F92D5, #6BA5E7)",
+          color: "#fff",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        }),
   };
 
   return (
@@ -291,7 +293,7 @@ const IndexPage = () => {
           get access
         </a>
       </div>
-      
+
       <a
         href="/support"
         style={dynamicSupportButtonStyle}
@@ -301,7 +303,8 @@ const IndexPage = () => {
             e.target.style.background = "rgba(255, 255, 255, 0.15)";
             e.target.style.border = "1px solid rgba(255, 255, 255, 0.3)";
           } else {
-            e.target.style.background = "linear-gradient(45deg, #5da0e3, #7ab3f5)";
+            e.target.style.background =
+              "linear-gradient(45deg, #5da0e3, #7ab3f5)";
             e.target.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
           }
         }}
@@ -311,7 +314,8 @@ const IndexPage = () => {
             e.target.style.background = "rgba(255, 255, 255, 0.1)";
             e.target.style.border = "1px solid rgba(255, 255, 255, 0.2)";
           } else {
-            e.target.style.background = "linear-gradient(45deg, #4F92D5, #6BA5E7)";
+            e.target.style.background =
+              "linear-gradient(45deg, #4F92D5, #6BA5E7)";
             e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
           }
         }}
